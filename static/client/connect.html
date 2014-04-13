@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p id="text"></p>
+<script>
+    var socket = io.connect();
+
+    socket.on('client', function(data){
+        if(data != undefined) {
+            if(data.messages.length > 0) {
+                $('#text').text(data.messages.toString());
+            }
+            else $('#text').text('Empty');
+        }
+        else $('#text').text('None');
+    });
+</script>
+
+</body>
+</html>

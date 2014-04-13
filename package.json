@@ -1,0 +1,33 @@
+{
+  "name": "YOUR-PROJECT-NAME-HERE",
+  "description": "YOUR PROJECT DESCRIPTION HERE",
+  "author": "YOUR NAME <your@emailaddress.com>",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "*",
+    "express": "*",
+    "jade": "*",
+    "mongoose": "*",
+    "socket.io": "*",
+    "mongodb": "*",
+      "passport":"*",
+      "passport-local":"*",
+    "passport-local-mongoose": "*",
+      "connect-flash":"*",
+      "underscore":"*",
+      "jsonwebtoken":"*",
+      "mongoose-schema-extend":"*",
+      "cookie-parser":"*",
+      "body-parser":"*",
+      "express-session":"*",
+      "serve-static":"*",
+      "errorhandler":"*"
+
+  },
+  "devDependencies": {
+    "vows": "0.5.x",
+	"mocha": "*",
+	"should": "*"
+  },
+  "engine": "node >= 0.6.6"
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>JSON Post Example</title>
+</head>
+<body>
+
+    <p id="text"></p>
+
+    <!--http://danielnill.com/nodejs-tutorial-with-socketio/-->
+    <script>
+        //        var socket = io.connect();
+        //        socket.on('date', function(data){
+        //            $('#date').text(data.date);
+        //        });
+
+
+        $(document).ready(function(){
+            $.ajax({
+                 'type': 'POST',
+                 'url': '../request_token',
+                 'contentType':'application/json',
+                 'data':JSON.stringify({"username":"test","password":"whee"}),
+                 'success':function(data){
+                     $.ajax({
+                         'type': 'POST',
+                         'url': '../login_with_token',
+                         'contentType':'application/json',
+                         'data':JSON.stringify({"token":data.token}),
+                         'success':function(msg){
+                             $('#text').text(data);
+                         }
+                     })
+                     .fail(function( xhr, errorType, exception){
+                         $('#text').text(exception || xhr.statusText);
+                     });
+
+                }})
+            .fail(function( xhr, errorType, exception){
+                $('#text').text(exception || xhr.statusText);
+            });
+        });
+    </script>
+</body>
+</html>
