@@ -23,7 +23,7 @@
       "serve-static":"*",
       "errorhandler":"*",
       "node-restful":"*",
-      "search-index":"*"
+      "solr-client":"*"
 
   },
   "devDependencies": {

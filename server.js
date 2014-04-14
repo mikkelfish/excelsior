@@ -60,16 +60,11 @@ router.use(function(req, res, next) {
     next();
 });
 
-server.use(router);
-
-
-
-
-//// Add headers
-//server.use(function (req, res, next) {
+////// Add headers
+//router.use(function (req, res, next) {
 //
 //    // Website you wish to allow to connect
-//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:63342');
+//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8983');
 //
 //    // Request methods you wish to allow
 //    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -84,6 +79,13 @@ server.use(router);
 //    // Pass to next layer of middleware
 //    next();
 //});
+
+server.use(router);
+
+
+
+
+
 
 // Configure passport
 var User = require('./models/user');

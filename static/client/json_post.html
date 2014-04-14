@@ -19,7 +19,6 @@
 
         $(document).ready(function(){
 
-
             $.ajax({
                  'type': 'POST',
                  'url': '../request_token',
@@ -37,6 +36,11 @@
                                  'type':'GET',
                                  'url':'../movies/' + data.id,
                                  'beforeSend': function(xhr){xhr.setRequestHeader('x-token', token);}
+                             });
+
+                             $.ajax({
+                                'type':'GET',
+                                 'url':'../movies/query?title=mov*'
                              });
                          }
                      });
