@@ -1,7 +1,7 @@
 {
-  "name": "YOUR-PROJECT-NAME-HERE",
-  "description": "YOUR PROJECT DESCRIPTION HERE",
-  "author": "YOUR NAME <your@emailaddress.com>",
+  "name": "excelsior",
+  "description": "Fully featured REST oriented platform built on express 4.x with both api and web access. Easily authentication, search, routing, etc.",
+  "author": "Mikkel Fishman <mikkel@peregrinescientific.co.nz>",
   "version": "0.0.1",
   "dependencies": {
     "connect": "*",
@@ -10,8 +10,8 @@
     "mongoose": "*",
     "socket.io": "*",
     "mongodb": "*",
-      "passport":"*",
-      "passport-local":"*",
+	  "passport":"*",
+	  "passport-local":"*",
     "passport-local-mongoose": "*",
       "connect-flash":"*",
       "underscore":"*",
@@ -29,7 +29,20 @@
   "devDependencies": {
     "vows": "0.5.x",
 	"mocha": "*",
-	"should": "*"
+	"should": "*",
+    "chai": "1.9.x"
   },
+  "keywords": [
+    "authentication",
+    "restful",
+	"jwt",
+	"api",
+    "passport",
+    "mongoose",
+	"mongo",
+    "rest",
+    "search",
+	"solr"
+  ],
   "engine": "node >= 0.6.6"
 }
