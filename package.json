@@ -21,7 +21,9 @@
       "body-parser":"*",
       "express-session":"*",
       "serve-static":"*",
-      "errorhandler":"*"
+      "errorhandler":"*",
+      "node-restful":"*",
+      "search-index":"*"
 
   },
   "devDependencies": {

@@ -2,7 +2,8 @@
 var express = require('express')
     , io = require('socket.io')
     , DataSource = require("./datasource")
-    , mongoose = require('mongoose')
+    , restful = require('node-restful')
+    , mongoose = restful.mongoose
     , port = (process.env.PORT || 8888)
     , passport = require('passport')
     , flash = require('connect-flash')
@@ -138,6 +139,9 @@ server.post('/data', function(req,res){
 
 // Setup routes
 require('./user_routes')(server);
+
+var Movie = require('./models/movie');
+require('./restful_routes')(server, Movie, "/movies");
 
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){

@@ -69,7 +69,7 @@ module.exports = function (app) {
     });
 
     app.post('/login_with_token', function(req, res, next) {
-        passport.authenticate('jwt', { session: false, searchClass: new User() }, function(err, user, info) {
+        passport.authenticate('jwt', { session: false }, function(err, user, info) {
             if (err) { return next(err); }
             if (!user) {
                 res.status(401);
@@ -78,6 +78,13 @@ module.exports = function (app) {
 
             res.send({success:true});
         })(req, res, next);
+    });
+
+    app.post('/reset_token', function(req, res, next) {
+        User.invalidateToken(req.body.username, function(err, msg){
+            if (err) { return next(err); }
+            res.send({message:msg});
+        });
     });
 
     app.get('/logout', function(req, res) {

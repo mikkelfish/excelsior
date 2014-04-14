@@ -18,26 +18,32 @@
 
 
         $(document).ready(function(){
+
+
             $.ajax({
                  'type': 'POST',
                  'url': '../request_token',
                  'contentType':'application/json',
                  'data':JSON.stringify({"username":"test","password":"whee"}),
                  'success':function(data){
+                     var token = data.token;
                      $.ajax({
-                         'type': 'POST',
-                         'url': '../login_with_token',
+                         'type':'POST',
+                         'url':'../movies',
                          'contentType':'application/json',
-                         'data':JSON.stringify({"token":data.token}),
-                         'success':function(msg){
-                             $('#text').text(data);
+                         'data':JSON.stringify({"token":token, "title":"test movie","year":"1983"}),
+                         'success':function(data){
+                             $.ajax({
+                                 'type':'GET',
+                                 'url':'../movies/' + data.id,
+                                 'beforeSend': function(xhr){xhr.setRequestHeader('x-token', token);}
+                             });
                          }
-                     })
-                     .fail(function( xhr, errorType, exception){
-                         $('#text').text(exception || xhr.statusText);
                      });
 
-                }})
+                     $('#text').text(data);
+                 }
+            })
             .fail(function( xhr, errorType, exception){
                 $('#text').text(exception || xhr.statusText);
             });
