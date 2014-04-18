@@ -142,8 +142,11 @@ server.post('/data', function(req,res){
 // Setup routes
 require('./user_routes')(server);
 
-var Movie = require('./models/movie');
-require('./restful_routes')(server, Movie, "/movies");
+var Company = require('./models/company');
+var Offering = require('./models/offering');
+
+require('./restful_routes')(server, Company, "/companies");
+require('./restful_routes')(server, Offering, "/offerings");
 
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){

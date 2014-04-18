@@ -1,5 +1,4 @@
-var Movie = require('./models/movie'),
-    common_plugins = require('./common_plugins'),
+var common_plugins = require('./common_plugins'),
     solr = require('solr-client'),
     _ = require('underscore'),
     http = require('http'),
@@ -21,6 +20,8 @@ module.exports = function (app, model, route) {
 
     model.methods(['get', 'post', 'put', 'delete']);
     var options = {};
+
+    model.schema.options.name = model.modelName;
     model.schema.plugin(common_plugins);
     if(model.schema.options.hasSearch){
         var client = solr.createClient();

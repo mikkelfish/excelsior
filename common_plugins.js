@@ -23,30 +23,32 @@ module.exports = exports = function tokenPlugin (schema, options) {
     if(filters.length > 0){
         var client = solr.createClient();
         client.autoCommit = true;
-        schema.post('save', function (result){
+        schema.pre('save', function (next){
             var toindex = {type_t: schema.options.name};
-
+            var self = this;
             _.each(filters, function(f){
-                toindex[f + '_t'] = result._doc[f];
+                toindex[f + '_t'] = self._doc[f];
             });
 
-            toindex["id"] = result._doc._id.toString();
+            toindex["id"] = self._doc._id.toString();
 
             client.add(toindex,function(err,obj){
                 if(err){
-                    console.log(err);
+                    var error = new Error(err);
+                    error.statusCode = 500;
+                    next(error);
                 }else{
-                    console.log(obj);
+                    next();
                 }
             });
         });
 
-        schema.post('remove', function (result) {
-            client.deleteByID(result._doc._id.toString(),function(err,obj){
+        schema.pre('remove', function (next) {
+            client.deleteByID(this._doc._id.toString(),function(err,obj){
                 if(err){
-                    console.log(err);
+                    next(new Error(err));
                 }else{
-                    console.log(obj);
+                    next();
                 }
             });
         });
